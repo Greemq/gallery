@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352f9825-a0cc-4e6e-baf6-5653a07f154e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Gallery/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Gallery/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/gallery.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/gallery.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +166,7 @@
       <workItem from="1619416086161" duration="2702000" />
       <workItem from="1619438193994" duration="412000" />
       <workItem from="1619438619127" duration="431000" />
-      <workItem from="1619452411492" duration="7619000" />
+      <workItem from="1619452411492" duration="7799000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1619459479861</created>

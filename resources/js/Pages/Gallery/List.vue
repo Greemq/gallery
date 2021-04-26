@@ -32,7 +32,7 @@ export default {
             }).then(res => {
                 let tmp = res.data.data;
                 this.total += tmp.total;
-                this.list = tmp.hits;
+                this.list = this.list.concat(tmp.hits);
                 this.page++;
                 this.scrollLoad = false;
             });

@@ -81,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         var tmp = res.data.data;
         _this.total += tmp.total;
-        _this.list = tmp.hits;
+        _this.list = _this.list.concat(tmp.hits);
         _this.page++;
         _this.scrollLoad = false;
       });
