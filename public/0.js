@@ -49,6 +49,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79,18 +80,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.page++;
         _this.scrollLoad = false;
       });
-    },
-    handleScroll: function handleScroll() {
-      if ($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !this.scrollLoad) {
-        this.scrollLoad = true;
-        this.$nextTick(function () {
-          this.getList();
-        });
-      }
     }
   },
   mounted: function mounted() {
-    window.document.body.onscroll = this.handleScroll;
     this.getList();
   }
 });
@@ -153,10 +145,14 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "card_list" },
-    _vm._l(_vm.list, function(item, index) {
-      return _c("card", { key: index, attrs: { item: item } })
-    }),
-    1
+    [
+      _vm._l(_vm.list, function(item, index) {
+        return _c("card", { key: index, attrs: { item: item } })
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.getList } }, [_vm._v("load more")])
+    ],
+    2
   )
 }
 var staticRenderFns = []
