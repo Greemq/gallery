@@ -1,6 +1,7 @@
 <template>
     <div class="card_list">
         <card v-for="(item,index) in list" :key="index" :item="item"></card>
+        <button @click="getList">load more</button>
     </div>
 </template>
 
@@ -31,17 +32,9 @@ export default {
                 this.scrollLoad = false;
             });
         },
-        handleScroll() {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !this.scrollLoad) {
-                this.scrollLoad = true;
-                this.$nextTick(function () {
-                    this.getList();
-                });
-            }
-        },
+
     },
     mounted() {
-        window.document.body.onscroll = this.handleScroll;
         this.getList();
     }
 };
