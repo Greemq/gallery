@@ -1,7 +1,12 @@
 <template>
-    <div class="card_list">
-        <card v-for="(item,index) in list" :key="index" :item="item"></card>
-        <button @click="getList">load more</button>
+    <div>
+        <div class="card_list">
+            <card v-for="(item,index) in list" :key="index" :item="item"></card>
+
+        </div>
+        <div class="footer">
+            <button class="button_load" @click="getList">load more</button>
+        </div>
     </div>
 </template>
 

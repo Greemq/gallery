@@ -4,7 +4,7 @@ $body-background: grey;
 $header-background: #222831;
 $footer-background: #222831;
 $main-background: #393e46;
-$card-background: rgba(41,44,49,1);
+$card-background: rgba(41, 44, 49, 1);
 
 body,
 html {
@@ -25,18 +25,52 @@ li {
 .main {
     height: 100%;
     background-color: $body-background;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
+    display: grid;
+    grid-template: 1fr minmax(60px, auto) / 1fr;
+    grid-row-gap: 15px;
+    grid-template-areas:
+        "list"
+        "footer";
+    .footer {
+        grid-area: footer;
+        grid-template-columns: 1fr 1fr 1fr;
+        display: grid;
+        justify-items: center;
+
+        .button_load {
+            grid-column: 2/2;
+            height: 40px;
+            width: 90px;
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            background-color: $body-color;
+            box-shadow: none;
+            border: none;
+            outline: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: $text-color;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
 }
 
 .card_list {
+    grid-area: list;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    @media all and (max-width: 1024px) {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    @media all and (max-width: 768px) {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+    grid-template: 200px / repeat(auto-fit, minmax(250px, 1fr));
+    // @media all and (max-width: 1024px) {
+    //     grid-template:250px / repeat(auto-fit, minmax(200px, 1fr));
+    // }
+    // @media all and (max-width: 768px) {
+    //     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    // }
     grid-gap: 10px;
 }
 
@@ -44,30 +78,34 @@ li {
     background: $card-background;
     background: radial-gradient(
         circle,
-        rgba(255,255,255,1) 0%,
-        $card-background 100%,
+        rgba(255, 255, 255, 1) 0%,
+        $card-background 100%
     );
     box-shadow: 0 14px 28px $footer-background, 0 10px 10px $footer-background;
     display: grid;
-    grid-template-rows: minmax(auto, 200px) 50px;
-
+    grid-template: minmax(auto, 160px) 40px/1fr;
+    
     .card_image {
         img {
             object-fit: cover;
             width: 100%;
             height: 100%;
             opacity: 0.9;
+            overflow: hidden;
         }
     }
 
     .card_item_elems {
         background-color: $header-background;
-        padding: 5px;
+        padding: 10px;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        bottom: 0;
+        
         .card_item-tags {
         }
         .card_item-user {
+            text-align: end;
         }
     }
 }
