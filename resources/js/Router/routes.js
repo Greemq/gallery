@@ -1,7 +1,7 @@
 const routes =[
     {
         path:'',
-        component:()=>import('../Pages/Home.vue'),
+        component:()=>import('../Pages/Gallery/List.vue'),
         name:'home'
     },
 ]

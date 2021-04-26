@@ -1,0 +1,82 @@
+$text-color: #f2f2f2;
+$body-color: #c94e4e;
+$body-background: grey;
+$header-background: #222831;
+$footer-background: #222831;
+$main-background: #393e46;
+$card-background: rgba(41,44,49,1);
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background-color: $body-background;
+    color: $text-color;
+}
+li {
+    list-style-type: none;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+.main {
+    height: 100%;
+    background-color: $body-background;
+    padding: 20px;
+}
+
+.card_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    @media all and (max-width: 1024px) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    @media all and (max-width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    grid-gap: 10px;
+}
+
+.card_item {
+    background: $card-background;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,1) 0%,
+        $card-background 100%,
+    );
+    box-shadow: 0 14px 28px $footer-background, 0 10px 10px $footer-background;
+    display: grid;
+    grid-template-rows: minmax(auto, 200px) 50px;
+
+    .card_image {
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            opacity: 0.9;
+        }
+    }
+
+    .card_item_elems {
+        background-color: $header-background;
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .card_item-tags {
+        }
+        .card_item-user {
+        }
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media all and (max-width: 480px) {
+}
