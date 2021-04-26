@@ -27,7 +27,7 @@ li {
     background-color: $body-background;
     padding: 20px 20px 0 20px;
     display: grid;
-    grid-template: 1fr minmax(60px, auto) / 1fr;
+    grid-template: 1fr 60px / 1fr;
     grid-row-gap: 15px;
     grid-template-areas:
         "list"
@@ -40,8 +40,8 @@ li {
 
         .button_load {
             grid-column: 2/2;
-            height: 40px;
-            width: 90px;
+            height: 30px;
+            width: 120px;
             border-radius: 20px;
             -webkit-border-radius: 20px;
             -moz-border-radius: 20px;
@@ -64,14 +64,14 @@ li {
 .card_list {
     grid-area: list;
     display: grid;
-    grid-template: 200px / repeat(auto-fit, minmax(250px, 1fr));
+    grid-template: 220px / repeat(auto-fit, minmax(250px, 1fr));
     // @media all and (max-width: 1024px) {
     //     grid-template:250px / repeat(auto-fit, minmax(200px, 1fr));
     // }
     // @media all and (max-width: 768px) {
     //     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     // }
-    grid-gap: 10px;
+    grid-gap: 15px;
 }
 
 .card_item {
@@ -83,7 +83,7 @@ li {
     );
     box-shadow: 0 14px 28px $footer-background, 0 10px 10px $footer-background;
     display: grid;
-    grid-template: minmax(auto, 160px) 40px/1fr;
+    grid-template: minmax(auto, 160px) 60px/1fr;
     
     .card_image {
         img {

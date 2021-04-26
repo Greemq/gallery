@@ -12,7 +12,8 @@ class ImageController extends Controller
         $res=Http::get('https://pixabay.com/api/',[
             'key'=>'21321953-5a2837cff72c450b340126c48',
             'per_page'=>40,
-            'page'=>request('page')
+            'page'=>request('page'),
+            'q'=>'space'
         ]);
         return response()->json(['data'=>json_decode($res)]);
     }
