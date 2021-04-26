@@ -2029,6 +2029,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App"
 });
@@ -20346,7 +20348,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c("div", { staticClass: "wrapper" }, [
+    _c("div", { staticClass: "main" }, [_c("router-view")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -35773,19 +35777,14 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../Pages/Gallery/List.vue */ "./resources/js/Pages/Gallery/List.vue"));
   },
   name: 'list'
+}, {
+  path: '/home',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../Pages/Home.vue */ "./resources/js/Pages/Home.vue"));
+  },
+  name: 'home'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
-
-/***/ }),
-
-/***/ "./resources/js/Store/index.js":
-/*!*************************************!*\
-  !*** ./resources/js/Store/index.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'F:\\progs\\OSPanel\\domains\\gallery-app\\resources\\js\\Store\\index.js'");
 
 /***/ }),
 
@@ -35802,12 +35801,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _Router_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Router/index */ "./resources/js/Router/index.js");
-/* harmony import */ var _Store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Store/index */ "./resources/js/Store/index.js");
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _sass_gallery_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../sass/gallery.css */ "./resources/sass/gallery.css");
-/* harmony import */ var _sass_gallery_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_sass_gallery_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
+/* harmony import */ var _sass_gallery_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../sass/gallery.css */ "./resources/sass/gallery.css");
+/* harmony import */ var _sass_gallery_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_sass_gallery_css__WEBPACK_IMPORTED_MODULE_4__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 
 
 
@@ -35818,9 +35815,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: _Router_index__WEBPACK_IMPORTED_MODULE_2__["default"],
-  store: _Store_index__WEBPACK_IMPORTED_MODULE_3__["default"],
   components: {
-    App: _App_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
