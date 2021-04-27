@@ -1,10 +1,26 @@
+// $text-color: #f2f2f2;
+// $body-color: #c94e4e;
+// $body-background: grey;
+// $header-background: #222831;
+// $footer-background: #222831;
+// $main-background: #393e46;
+// $card-background: rgba(41, 44, 49, 1);
+// $text-color: #f2f2f2;
+// $body-background: #425652;//primary-1
+// $card-background: #2F3D3B;//primary-2
+// $header-background: #13211F;//primary-3
+// $footer-background: #0E1E1B;//primary-4
 $text-color: #f2f2f2;
-$body-color: #c94e4e;
-$body-background: grey;
-$header-background: #222831;
-$footer-background: #222831;
-$main-background: #393e46;
-$card-background: rgba(41, 44, 49, 1);
+$body-background: #155f66; //primary-0
+$card-background: #0294a2; //primary-2
+$header-background: #133a3d; //primary-3
+$footer-background: #081112; //primary-4
+
+$color-primary-0: #155f66; // Main Primary color */
+$color-primary-1: #02daee;
+$color-primary-2: #0294a2;
+$color-primary-3: #133a3d;
+$color-primary-4: #081112;
 
 body,
 html {
@@ -27,7 +43,7 @@ li {
     background-color: $body-background;
     padding: 20px 20px 0 20px;
     display: grid;
-    grid-template: 1fr 60px / 1fr;
+    grid-template: 1fr 30px / 1fr;
     grid-row-gap: 15px;
     grid-template-areas:
         "list"
@@ -41,21 +57,18 @@ li {
         .button_load {
             grid-column: 2/2;
             height: 30px;
-            width: 120px;
-            border-radius: 20px;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            -ms-border-radius: 20px;
-            -o-border-radius: 20px;
-            background-color: $body-color;
+            width: 140px;
+            background-color: $footer-background;
             box-shadow: none;
             border: none;
             outline: none;
             text-transform: uppercase;
             font-size: 14px;
             color: $text-color;
+            opacity: 0.7;
+
             &:hover {
-                opacity: 0.6;
+                opacity: 1;
             }
         }
     }
@@ -64,13 +77,10 @@ li {
 .card_list {
     grid-area: list;
     display: grid;
-    grid-template: 220px / repeat(auto-fit, minmax(250px, 1fr));
-    // @media all and (max-width: 1024px) {
-    //     grid-template:250px / repeat(auto-fit, minmax(200px, 1fr));
-    // }
-    // @media all and (max-width: 768px) {
-    //     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    // }
+    grid-template: repeat(auto-fill, minmax(auto, 220px)) / repeat(
+            auto-fill,
+            minmax(250px, 1fr)
+        );
     grid-gap: 15px;
 }
 
@@ -78,13 +88,12 @@ li {
     background: $card-background;
     background: radial-gradient(
         circle,
-        rgba(255, 255, 255, 1) 0%,
+        rgb(255, 255, 255) 0%,
         $card-background 100%
     );
     box-shadow: 0 14px 28px $footer-background, 0 10px 10px $footer-background;
     display: grid;
     grid-template: minmax(auto, 160px) 60px/1fr;
-    
     .card_image {
         img {
             object-fit: cover;
@@ -101,7 +110,7 @@ li {
         display: grid;
         grid-template-columns: 1fr 1fr;
         bottom: 0;
-        
+
         .card_item-tags {
         }
         .card_item-user {
