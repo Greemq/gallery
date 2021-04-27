@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352f9825-a0cc-4e6e-baf6-5653a07f154e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gallery-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gallery-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/gallery.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/gallery.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +140,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/sass" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\progs\OSPanel\domains\gallery-app\resources\sass" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\progs\OSPanel\domains\gallery-app\resources\js\Helpers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\progs\OSPanel\domains\gallery-app\resources\sass" />
     </key>
   </component>
   <component name="RunManager">
@@ -169,7 +170,8 @@
       <workItem from="1619438619127" duration="431000" />
       <workItem from="1619452411492" duration="8899000" />
       <workItem from="1619495369530" duration="600000" />
-      <workItem from="1619540830191" duration="665000" />
+      <workItem from="1619540830191" duration="915000" />
+      <workItem from="1619542093431" duration="201000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1619459479861</created>
@@ -256,6 +258,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="787" y="223" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619456882960" />
+    <state x="476" y="165" key="SettingsEditor" timestamp="1619542084940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="476" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1619542084940" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1619459650475">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -268,5 +274,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="git4idea.log.GitShowExternalLogAction/0.0.1920.1040@0.0.1920.1040" timestamp="1619438609501" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
