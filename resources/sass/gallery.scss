@@ -83,8 +83,8 @@ li {
     background: $card-background;
     background: radial-gradient(
         circle,
-        rgb(255, 255, 255) 0%,
-        $card-background 100%
+        $header-background 0%,
+        $footer-background 100%
     );
     box-shadow: 0 14px 28px $footer-background, 0 10px 10px $footer-background;
     display: grid;
