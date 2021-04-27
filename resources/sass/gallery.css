@@ -1,0 +1,108 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  background-color: #155f66;
+  color: #f2f2f2;
+}
+
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  height: 100vh;
+}
+
+.main {
+  height: 100%;
+  background-color: #155f66;
+  padding: 20px 20px 0 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 30px;
+  -ms-grid-columns: 1fr;
+      grid-template: 1fr 30px / 1fr;
+  grid-row-gap: 15px;
+      grid-template-areas: "list" "footer";
+}
+
+.main .footer {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: footer;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+}
+
+.main .footer .button_load {
+  -ms-grid-column: 2;
+  grid-column: 2/2;
+  height: 30px;
+  width: 140px;
+  background-color: #081112;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #f2f2f2;
+  opacity: 0.7;
+}
+
+.main .footer .button_load:hover {
+  opacity: 1;
+}
+
+.card_list {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: list;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (minmax(auto, 220px))[auto-fill];
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+      grid-template: repeat(auto-fill, minmax(auto, 220px))/repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 15px;
+}
+
+.card_item {
+  background: #0294a2;
+  background: radial-gradient(circle, #133a3d 0%, #081112 100%);
+  -webkit-box-shadow: 0 14px 28px #081112, 0 10px 10px #081112;
+          box-shadow: 0 14px 28px #081112, 0 10px 10px #081112;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: minmax(auto, 160px) 60px;
+  -ms-grid-columns: 1fr;
+      grid-template: minmax(auto, 160px) 60px/1fr;
+}
+
+.card_item .card_image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  overflow: hidden;
+}
+
+.card_item .card_item_elems {
+  background-color: #133a3d;
+  padding: 10px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  bottom: 0;
+}
+
+.card_item .card_item_elems .card_item-user {
+  text-align: end;
+}
+/*# sourceMappingURL=gallery.css.map */
