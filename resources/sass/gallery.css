@@ -3,7 +3,7 @@ html {
   width: 100%;
   height: 100%;
   margin: 0px;
-  background-color: #155f66;
+  background-color: #1C1C4A;
   color: #f2f2f2;
 }
 
@@ -17,7 +17,7 @@ li {
 
 .main {
   height: 100%;
-  background-color: #155f66;
+  background-color: #1C1C4A;
   padding: 20px 20px 0 20px;
   display: -ms-grid;
   display: grid;
@@ -44,7 +44,7 @@ li {
   grid-column: 2/2;
   height: 30px;
   width: 140px;
-  background-color: #081112;
+  background-color: #10101D;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: none;
@@ -72,10 +72,10 @@ li {
 }
 
 .card_item {
-  background: #0294a2;
-  background: radial-gradient(circle, #133a3d 0%, #081112 100%);
-  -webkit-box-shadow: 0 14px 28px #081112, 0 10px 10px #081112;
-          box-shadow: 0 14px 28px #081112, 0 10px 10px #081112;
+  background: #4F4F70;
+  background: radial-gradient(circle, #04042C 0%, #10101D 100%);
+  -webkit-box-shadow: 0 14px 28px #10101D, 0 10px 10px #10101D;
+          box-shadow: 0 14px 28px #10101D, 0 10px 10px #10101D;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: minmax(auto, 160px) 60px;
@@ -93,7 +93,7 @@ li {
 }
 
 .card_item .card_item_elems {
-  background-color: #133a3d;
+  background-color: #04042C;
   padding: 10px;
   display: -ms-grid;
   display: grid;
