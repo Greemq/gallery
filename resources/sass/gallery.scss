@@ -42,7 +42,8 @@ li {
     height: 100%;
     min-height: 100vh;
     // background-color: $body-background;
-    background: linear-gradient(
+    
+    background: repeating-linear-gradient(
         $body-background,
         $footer-background,
         $header-background

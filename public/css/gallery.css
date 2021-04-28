@@ -18,7 +18,7 @@ li {
 .main {
   height: 100%;
   min-height: 100vh;
-  background: linear-gradient(#1c1c4a, #10101d, #05051a);
+  background: repeating-linear-gradient(#1c1c4a, #10101d, #05051a);
   background-repeat: repeat;
   padding: 20px 20px 0 20px;
   display: grid;
