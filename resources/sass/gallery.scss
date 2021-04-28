@@ -16,23 +16,17 @@
 // $header-background: #133a3d; //primary-3
 // $footer-background: #081112; //primary-4
 $text-color: #f2f2f2;
-$body-background: #1C1C4A; //primary-0
-$card-background: #4F4F70; //primary-2
-$header-background: #04042C; //primary-3
-$footer-background: #10101D; //primary-4
-
-$color-primary-0: #04042C;	// Main Primary color */
-$color-primary-1: #0000BA;
-$color-primary-2: #141479;
-$color-primary-3: #10101D;
-$color-primary-4: #1C1C4A;
+$body-background: #1c1c4a; //primary-0
+$card-background: #4f4f70; //primary-2
+$header-background: #05051a; //primary-3
+$footer-background: #10101d; //primary-4
 
 body,
 html {
     width: 100%;
     height: 100%;
     margin: 0px;
-    background-color: $body-background;
+    // background-color: $body-background;
     color: $text-color;
 }
 li {
@@ -45,7 +39,12 @@ li {
 
 .main {
     height: 100%;
-    background-color: $body-background;
+    // background-color: $body-background;
+    background: linear-gradient(
+        $body-background,
+        $footer-background,
+        $header-background
+    );
     padding: 20px 20px 0 20px;
     display: grid;
     grid-template: 1fr 30px / 1fr;
