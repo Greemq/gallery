@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/list','ImageController@items');
+Route::get('/get-payment-data','ImageController@getPaymentResult');

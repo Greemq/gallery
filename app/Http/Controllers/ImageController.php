@@ -17,4 +17,11 @@ class ImageController extends Controller
         ]);
         return response()->json(['data'=>json_decode($res)]);
     }
+
+    public function getPaymentResult(Request $request){
+        Log::error('in getPaymentResult');
+        Log::error($request->all());
+        return ['success'];
+
+    }
 }
