@@ -19,7 +19,7 @@ class ImageController extends Controller
     }
 
     public function getPaymentResult(Request $request){
-        Log::error($request->get(''));
+        Log::error($request->get('pg_result'));
         Log::error('in getPaymentResult');
         Log::error($request->all());
         return [$request->all()];
