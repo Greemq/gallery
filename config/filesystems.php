@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        'files' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/files'),
+            'url' =>'/storage/files/',
+        ]
 
     ],
 

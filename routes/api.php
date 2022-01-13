@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/list','ImageController@items');
-Route::get('/get-payment-data','ImageController@getPaymentResult');
-Route::post('/get-payment-data','ImageController@postPaymentResult');
+
+Route::get('/createRtcToken/{room}/{uid}','AgoraController@createToken');

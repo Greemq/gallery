@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../API-Examples-Web-main/.idea/API-Examples-Web-main.iml" filepath="$PROJECT_DIR$/../API-Examples-Web-main/.idea/API-Examples-Web-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gallery-app.iml" filepath="$PROJECT_DIR$/.idea/gallery-app.iml" />
     </modules>
   </component>

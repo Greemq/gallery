@@ -35771,18 +35771,23 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var routes = [{
-  path: '/',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../Pages/Gallery/List.vue */ "./resources/js/Pages/Gallery/List.vue"));
-  },
-  name: 'list'
-}, {
+var routes = [// {
+//     path:'/',
+//     component:()=>import('../Pages/Gallery/List.vue'),
+//     name:'list'
+// },
+{
   path: '/home',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../Pages/Home.vue */ "./resources/js/Pages/Home.vue"));
   },
   name: 'home'
+}, {
+  path: '/',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ../Pages/Agora/main */ "./resources/js/Pages/Agora/main.vue"));
+  },
+  name: 'list'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 

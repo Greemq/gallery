@@ -17,20 +17,4 @@ class ImageController extends Controller
         ]);
         return response()->json(['data'=>json_decode($res)]);
     }
-
-    public function getPaymentResult(Request $request){
-        Log::error($request->get('pg_result'));
-        Log::error('in getPaymentResult');
-        Log::error($request->all());
-        return [$request->all()];
-
-    }
-
-    public function postPaymentResult(Request $request){
-        Log::error($request->get('pg_result'));
-        Log::error('in postPaymentResult');
-        Log::error($request->all());
-        return [$request->all()];
-
-    }
 }
