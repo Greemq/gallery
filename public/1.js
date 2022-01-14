@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
       var streamDiv = document.createElement("div");
       streamDiv.id = elementId;
       streamDiv.style.transform = "rotateY(180deg)";
-      remoteContainer.appendChild(streamDiv);
+      document.getElementById('me').appendChild(streamDiv); // remoteContainer.appendChild(streamDiv);
     },
     removeVideoStream: function removeVideoStream(elementId) {
       var remoteDiv = document.getElementById(elementId);

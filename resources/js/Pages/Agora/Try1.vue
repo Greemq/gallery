@@ -136,7 +136,8 @@ export default {
             let streamDiv = document.createElement("div");
             streamDiv.id = elementId;
             streamDiv.style.transform = "rotateY(180deg)";
-            remoteContainer.appendChild(streamDiv);
+            document.getElementById('me').appendChild(streamDiv)
+            // remoteContainer.appendChild(streamDiv);
         },
         removeVideoStream(elementId) {
             let remoteDiv = document.getElementById(elementId);
