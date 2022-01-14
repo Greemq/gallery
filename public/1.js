@@ -50,6 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Try1",
@@ -169,7 +170,8 @@ __webpack_require__.r(__webpack_exports__);
       var streamDiv = document.createElement("div");
       streamDiv.id = elementId;
       streamDiv.style.transform = "rotateY(180deg)";
-      document.getElementById('me').appendChild(streamDiv); // remoteContainer.appendChild(streamDiv);
+      var remoteContainer = document.getElementById('remoteContainer');
+      remoteContainer.appendChild(streamDiv);
     },
     removeVideoStream: function removeVideoStream(elementId) {
       var remoteDiv = document.getElementById(elementId);
@@ -389,7 +391,9 @@ var staticRenderFns = [
     return _c("div", [
       _c("h4", [_vm._v("My Feed :")]),
       _vm._v(" "),
-      _c("div", { attrs: { id: "me" } })
+      _c("div", { attrs: { id: "me" } }),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "remoteContainer" } })
     ])
   }
 ]

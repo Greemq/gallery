@@ -15,6 +15,7 @@
         <div>
             <h4>My Feed :</h4>
             <div id="me"></div>
+            <div id="remoteContainer"></div>
         </div>
         <div>
             <div>
@@ -136,8 +137,8 @@ export default {
             let streamDiv = document.createElement("div");
             streamDiv.id = elementId;
             streamDiv.style.transform = "rotateY(180deg)";
-            document.getElementById('me').appendChild(streamDiv)
-            // remoteContainer.appendChild(streamDiv);
+            let remoteContainer = document.getElementById('remoteContainer')
+            remoteContainer.appendChild(streamDiv);
         },
         removeVideoStream(elementId) {
             let remoteDiv = document.getElementById(elementId);
