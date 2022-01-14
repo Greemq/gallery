@@ -35786,9 +35786,9 @@ var routes = [{
 }, {
   path: '/',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../Pages/Agora/main */ "./resources/js/Pages/Agora/main.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../Pages/Agora/Try1 */ "./resources/js/Pages/Agora/Try1.vue"));
   },
-  name: 'list'
+  name: 'Agora'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 

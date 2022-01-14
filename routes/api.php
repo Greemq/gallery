@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/list','ImageController@items');
 
-Route::get('/createRtcToken/{room}/{uid}','AgoraController@createToken');
+Route::get('/createRtcToken/{room}/{uid}/{role}','AgoraController@createToken');

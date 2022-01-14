@@ -11,8 +11,8 @@ const routes =[
     },
     {
         path:'/',
-        component:()=>import('../Pages/Agora/main'),
-        name: 'list'
+        component:()=>import('../Pages/Agora/Try1'),
+        name: 'Agora'
     }
 ]
 

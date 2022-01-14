@@ -28,11 +28,10 @@ class AgoraController extends Controller
         
     }
 
-    public function createToken($room,$uid){
+    public function createToken($room,$uid,$role){
         $appID = "b0e7072ea1f8479fb58b857449c7f702";
         $appCertificate = "887114e4cf254167807d5a622f42316c";
         $channelName = $room;
-        $role = RtcTokenBuilder::RoleAttendee;
         $expireTimeInSeconds = 3600;
         $currentTimestamp = (new \DateTime("now", new \DateTimeZone('UTC')))->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
