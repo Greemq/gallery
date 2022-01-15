@@ -103,6 +103,28 @@ export default {
                     client.publish(localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
             }, (err) => this.handleFail(err));
+            this.client.on('stream-subscribed', function (evt) {
+                let stream = evt.stream;
+                let streamId = String(stream.getId());
+                try {
+                    this.addVideoStream(streamId)
+                }
+                catch (e){
+                    console.log(e)
+                    let streamDiv = document.createElement("div");
+                    streamDiv.id = streamId;
+                    streamDiv.style.transform = "rotateY(180deg)";
+                    let remoteContainer = document.getElementById('remoteContainer');
+                    remoteContainer.appendChild(streamDiv);
+                }
+
+
+                stream.play(streamId);
+            });
+
+            this.client.on('stream-added', (evt) => {
+                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+            });
         },
         joinChannel() {
             this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
@@ -121,7 +143,6 @@ export default {
             this.client.on('stream-subscribed', function (evt) {
                 let stream = evt.stream;
                 let streamId = String(stream.getId());
-                console.log(streamId)
                 try {
                     this.addVideoStream(streamId)
                 }

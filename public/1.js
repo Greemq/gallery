@@ -130,6 +130,28 @@ __webpack_require__.r(__webpack_exports__);
       }, function (err) {
         return _this2.handleFail(err);
       });
+      this.client.on('stream-subscribed', function (evt) {
+        var stream = evt.stream;
+        var streamId = String(stream.getId());
+
+        try {
+          this.addVideoStream(streamId);
+        } catch (e) {
+          console.log(e);
+          var streamDiv = document.createElement("div");
+          streamDiv.id = streamId;
+          streamDiv.style.transform = "rotateY(180deg)";
+          var remoteContainer = document.getElementById('remoteContainer');
+          remoteContainer.appendChild(streamDiv);
+        }
+
+        stream.play(streamId);
+      });
+      this.client.on('stream-added', function (evt) {
+        _this2.client.subscribe(evt.stream, function (err) {
+          return _this2.handleFail(err);
+        });
+      });
     },
     joinChannel: function joinChannel() {
       var _this3 = this;
@@ -156,7 +178,6 @@ __webpack_require__.r(__webpack_exports__);
       this.client.on('stream-subscribed', function (evt) {
         var stream = evt.stream;
         var streamId = String(stream.getId());
-        console.log(streamId);
 
         try {
           this.addVideoStream(streamId);
