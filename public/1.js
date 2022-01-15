@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Try1",
@@ -287,7 +288,19 @@ var render = function() {
       _vm._v(" "),
       _c("button", { on: { click: _vm.videoControl } }, [
         _vm._v("video controls")
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.console.log(_vm.stream.getStats())
+            }
+          }
+        },
+        [_vm._v("stream stats")]
+      )
     ]),
     _vm._v(" "),
     _c("br"),
