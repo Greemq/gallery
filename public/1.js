@@ -51,6 +51,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Try1",
@@ -141,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
           // Play the local stream
           localStream.play("me"); // Publish the local stream
 
-          client.publish(localStream, function (err) {
+          _this3.client.publish(localStream, function (err) {
             return _this3.handleFail(err);
           });
         }, function (err) {
@@ -167,8 +170,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Error : ", err);
     },
     addVideoStream: function addVideoStream(elementId) {
+      console.log('stream opened');
       var streamDiv = document.createElement("div");
       streamDiv.id = elementId;
+      streamDiv.style = 'width:200px;height:200px;background-color:red';
       streamDiv.style.transform = "rotateY(180deg)";
       var remoteContainer = document.getElementById('remoteContainer');
       remoteContainer.appendChild(streamDiv);
@@ -380,7 +385,13 @@ var render = function() {
         _vm._v(" "),
         _c("span", [_vm._v("Выбрано: " + _vm._s(_vm.role))])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br")
   ])
 }
 var staticRenderFns = [

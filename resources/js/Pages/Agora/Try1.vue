@@ -3,7 +3,7 @@
 
         <p>App id : <input id="app-id" v-model="agoraAppId" type="text" value=""/></p>
         <input v-model="channelName" placeholder="channelName" type="text"/>
-        <h2>{{uid}}</h2>
+        <h2>{{ uid }}</h2>
         <div class="row">
             <div>
                 <button id="host-join" type="button" @click="createChannel">Join as host</button>
@@ -35,6 +35,9 @@
 
             </div>
         </div>
+        <br>
+        <br>
+        <br>
     </div>
 </template>
 
@@ -56,24 +59,24 @@ export default {
     mounted() {
 
 
-        navigator.permissions.query({name: 'camera'}).then( permissionStatus => {
-            console.log(permissionStatus)
+        navigator.permissions.query({name: 'camera'}).then(permissionStatus => {
+            console.log(permissionStatus);
             // in my browser on this page it logs:
             //{
             //   status: "prompt",
             //   onchange: null,
             // }
-        })
+        });
         this.createClient();
     },
     methods: {
         getLocalStream() {
-            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then( stream => {
+            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
                 window.localStream = stream;
                 window.localAudio.srcObject = stream;
                 window.localAudio.autoplay = true;
-            }).catch( err => {
-                console.log("u got an error:" + err)
+            }).catch(err => {
+                console.log("u got an error:" + err);
             });
         },
         createClient() {
@@ -86,7 +89,7 @@ export default {
         },
         createChannel() {
             // this.client.setClientRole(this.role);
-            this.joinChannel()
+            this.joinChannel();
             this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
                 let localStream = AgoraRTC.createStream({
                     // audio: true,
@@ -112,13 +115,13 @@ export default {
                     // Play the local stream
                     localStream.play("me");
                     // Publish the local stream
-                    client.publish(localStream, (err) => this.handleFail(err));
+                    this.client.publish(localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
             }, (err) => this.handleFail(err));
             this.client.on('stream-subscribed', function (evt) {
                 let stream = evt.stream;
-                let streamId = String(stream.getId())
-                this.addVideoStream(streamId)
+                let streamId = String(stream.getId());
+                this.addVideoStream(streamId);
                 stream.play(streamId);
             });
 
@@ -134,10 +137,12 @@ export default {
             console.log("Error : ", err);
         },
         addVideoStream(elementId) {
+            console.log('stream opened')
             let streamDiv = document.createElement("div");
             streamDiv.id = elementId;
+            streamDiv.style = 'width:200px;height:200px;background-color:red';
             streamDiv.style.transform = "rotateY(180deg)";
-            let remoteContainer = document.getElementById('remoteContainer')
+            let remoteContainer = document.getElementById('remoteContainer');
             remoteContainer.appendChild(streamDiv);
         },
         removeVideoStream(elementId) {
