@@ -88,6 +88,9 @@ __webpack_require__.r(__webpack_exports__);
     this.createClient();
   },
   methods: {
+    getStats: function getStats() {
+      console.log(this.stream.getStats());
+    },
     videoControl: function videoControl() {
       this.video = !this.video;
     },
@@ -290,17 +293,7 @@ var render = function() {
         _vm._v("video controls")
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              _vm.console.log(_vm.stream.getStats())
-            }
-          }
-        },
-        [_vm._v("stream stats")]
-      )
+      _c("button", { on: { click: _vm.getStats } }, [_vm._v("stream stats")])
     ]),
     _vm._v(" "),
     _c("br"),

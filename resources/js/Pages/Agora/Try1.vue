@@ -16,7 +16,7 @@
             <div id="me" style="width: 200px;height:200px"></div>
             <div id="remoteContainer" style="width: 400px;height:400px;background-color: seagreen"></div>
             <button @click="videoControl">video controls</button>
-            <button @click="console.log(stream.getStats())">stream stats</button>
+            <button @click="getStats">stream stats</button>
         </div>
         <!--        <div>-->
         <!--            <div>-->
@@ -81,6 +81,9 @@ export default {
         this.createClient();
     },
     methods: {
+        getStats(){
+            console.log(this.stream.getStats())
+        },
         videoControl() {
             this.video = !this.video;
         },
