@@ -14,8 +14,9 @@
         </div>
         <div>
             <h4>My Feed :</h4>
-            <div id="me"></div>
-            <div id="remoteContainer"></div>
+            <div id="me" style="width: 200px;height:200px"></div>
+            <div id="remoteContainer" style="width: 400px;height:400px"></div>
+            <button @click=""></button>
         </div>
         <div>
             <div>
@@ -54,6 +55,7 @@ export default {
             channelName: null,
             uid: null,
             role: 101,
+            stream:null
         };
     },
     mounted() {
@@ -70,14 +72,8 @@ export default {
         this.createClient();
     },
     methods: {
-        getLocalStream() {
-            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
-                window.localStream = stream;
-                window.localAudio.srcObject = stream;
-                window.localAudio.autoplay = true;
-            }).catch(err => {
-                console.log("u got an error:" + err);
-            });
+        videoControl(){
+
         },
         createClient() {
             this.uid = Math.round(Math.random(1000) * 10000000);
@@ -88,62 +84,22 @@ export default {
             this.client.init(this.agoraAppId, () => console.log('client initialized'), (err) => this.handleFail(err));
         },
         createChannel() {
-            // this.client.setClientRole(this.role);
-            this.joinChannel();
-            this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
-                let localStream = AgoraRTC.createStream({
-                    // audio: true,
-                    video: true,
-                });
-                //Initialize the local stream
-                localStream.init(() => {
-                    // Play the local stream
-                    localStream.play("me");
-                    let me = document.getElementById('me');
-                    me.style = "width:200px;height:200px";
-                    // Publish the local stream
-                    client.publish(localStream, (err) => this.handleFail(err));
-                }, (err) => this.handleFail(err));
-            }, (err) => this.handleFail(err));
-            this.client.on('stream-subscribed', function (evt) {
-                let stream = evt.stream;
-                let streamId = String(stream.getId());
-                try {
-                    this.addVideoStream(streamId);
-                } catch (e) {
-                    console.log(e);
-                    let streamDiv = document.createElement("div");
-                    streamDiv.id = streamId;
-                    streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
-                    let remoteContainer = document.getElementById('remoteContainer');
-                    remoteContainer.appendChild(streamDiv);
-                }
-
-
-                stream.play(streamId);
-            });
-
-            this.client.on('stream-added', (evt) => {
-                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
-            });
-        },
-        joinChannel() {
             this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
                 let localStream = AgoraRTC.createStream({
                     audio: true,
                     video: true,
                 });
-                //Initialize the local stream
+                console.log(localStream)
                 localStream.init(() => {
-                    // Play the local stream
                     localStream.play("me");
-                    // Publish the local stream
-                    this.client.publish(localStream, (err) => this.handleFail(err));
+                    let me = document.getElementById('me');
+                    me.style = "width:200px;height:200px";
+                    client.publish(localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
             }, (err) => this.handleFail(err));
             this.client.on('stream-subscribed', function (evt) {
-                let stream = evt.stream;
-                let streamId = String(stream.getId());
+                this.stream = evt.stream;
+                let streamId = String(this.stream.getId());
                 try {
                     this.addVideoStream(streamId);
                 } catch (e) {
@@ -156,15 +112,46 @@ export default {
                 }
 
 
-                stream.play(streamId);
+                this.stream.play(streamId);
+            });
+
+            this.client.on('stream-added', (evt) => {
+                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+            });
+        },
+        joinChannel() {
+            this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
+                let localStream = AgoraRTC.createStream({
+                    audio: true,
+                    video: true,
+                });
+                localStream.init(() => {
+                    localStream.play("me");
+                    this.client.publish(localStream, (err) => this.handleFail(err));
+                }, (err) => this.handleFail(err));
+            }, (err) => this.handleFail(err));
+            this.client.on('stream-subscribed', function (evt) {
+                this.stream = evt.stream;
+                let streamId = String(this.stream.getId());
+                try {
+                    this.addVideoStream(streamId);
+                } catch (e) {
+                    console.log('my error ' +e);
+                    let streamDiv = document.createElement("div");
+                    streamDiv.id = streamId;
+                    streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
+                    let remoteContainer = document.getElementById('remoteContainer');
+                    remoteContainer.appendChild(streamDiv);
+                }
+
+
+                this.stream.play(streamId);
             });
 
             this.client.on('stream-added', (evt) => {
                 this.client.subscribe(evt.stream, (err) => this.handleFail(err));
             });
 
-            // this.client.on('stream-removed', this.removeVideoSteam(this.client.stream));
-            // this.client.on('peer-leave', this.removeVideoSteam(this.client.stream));
 
         },
         handleFail(err) {
