@@ -9,7 +9,6 @@
                 <button id="host-join" type="button" @click="createChannel">Join as host</button>
                 <button id="audience-join" type="button" @click="joinChannel">Join as audience</button>
                 <button id="leave" type="button">Leave</button>
-                <button id="getStr" type="button" @click="getLocalStream">get stream</button>
             </div>
         </div>
         <div>
@@ -89,7 +88,7 @@ export default {
                     audio: true,
                     video: true,
                 });
-                console.log(localStream)
+                this.stream = localStream
                 localStream.init(() => {
                     localStream.play("me");
                     let me = document.getElementById('me');

@@ -54,7 +54,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Try1",
@@ -105,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
           audio: true,
           video: true
         });
-        console.log(localStream);
+        _this2.stream = localStream;
         localStream.init(function () {
           localStream.play("me");
           var me = document.getElementById('me');
@@ -290,16 +289,7 @@ var render = function() {
         _vm._v(" "),
         _c("button", { attrs: { id: "leave", type: "button" } }, [
           _vm._v("Leave")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { id: "getStr", type: "button" },
-            on: { click: _vm.getLocalStream }
-          },
-          [_vm._v("get stream")]
-        )
+        ])
       ])
     ]),
     _vm._v(" "),
