@@ -65,8 +65,15 @@ __webpack_require__.r(__webpack_exports__);
       channelName: null,
       uid: null,
       role: 101,
-      stream: null
+      stream: null,
+      video: false
     };
+  },
+  watch: {
+    'video': function video() {
+      if (this.video) this.stream.disableAudio();else this.stream.enableAudio();
+      this.video = !this.video;
+    }
   },
   mounted: function mounted() {
     navigator.permissions.query({
@@ -91,48 +98,25 @@ __webpack_require__.r(__webpack_exports__);
         codec: 'vp8'
       });
       this.client.init(this.agoraAppId, function () {
-        return console.log('client initialized');
+        console.log('client initialized');
+
+        _this.addListeners();
       }, function (err) {
         return _this.handleFail(err);
       });
     },
-    createChannel: function createChannel() {
+    addListeners: function addListeners() {
       var _this2 = this;
 
-      this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
-        var localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
-          audio: true,
-          video: true
-        });
-        _this2.stream = localStream;
-        localStream.init(function () {
-          localStream.play("me");
-          var me = document.getElementById('me');
-          me.style = "width:200px;height:200px";
-          client.publish(localStream, function (err) {
-            return _this2.handleFail(err);
-          });
-        }, function (err) {
-          return _this2.handleFail(err);
-        });
-      }, function (err) {
-        return _this2.handleFail(err);
-      });
       this.client.on('stream-subscribed', function (evt) {
         this.stream = evt.stream;
         var streamId = String(this.stream.getId());
-
-        try {
-          this.addVideoStream(streamId);
-        } catch (e) {
-          console.log('my error ' + e);
-          var streamDiv = document.createElement("div");
-          streamDiv.id = streamId;
-          streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
-          var remoteContainer = document.getElementById('remoteContainer');
-          remoteContainer.appendChild(streamDiv);
-        }
-
+        console.log('my error ' + e);
+        var streamDiv = document.createElement("div");
+        streamDiv.id = streamId;
+        streamDiv.style = "transform:rotateY(180deg)";
+        var remoteContainer = document.getElementById('remoteContainer');
+        remoteContainer.appendChild(streamDiv);
         this.stream.play(streamId);
       });
       this.client.on('stream-added', function (evt) {
@@ -141,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    joinChannel: function joinChannel() {
+    createChannel: function createChannel() {
       var _this3 = this;
 
       this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
@@ -149,10 +133,11 @@ __webpack_require__.r(__webpack_exports__);
           audio: true,
           video: true
         });
+        _this3.stream = localStream;
         localStream.init(function () {
           localStream.play("me");
-
-          _this3.client.publish(localStream, function (err) {
+          var me = document.getElementById('me');
+          client.publish(localStream, function (err) {
             return _this3.handleFail(err);
           });
         }, function (err) {
@@ -161,43 +146,32 @@ __webpack_require__.r(__webpack_exports__);
       }, function (err) {
         return _this3.handleFail(err);
       });
-      this.client.on('stream-subscribed', function (evt) {
-        this.stream = evt.stream;
-        var streamId = String(this.stream.getId());
+    },
+    joinChannel: function joinChannel() {
+      var _this4 = this;
 
-        try {
-          this.addVideoStream(streamId);
-        } catch (e) {
-          console.log('my error ' + e);
-          var streamDiv = document.createElement("div");
-          streamDiv.id = streamId;
-          streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
-          var remoteContainer = document.getElementById('remoteContainer');
-          remoteContainer.appendChild(streamDiv);
-        }
-
-        this.stream.play(streamId);
-      });
-      this.client.on('stream-added', function (evt) {
-        _this3.client.subscribe(evt.stream, function (err) {
-          return _this3.handleFail(err);
+      this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
+        var localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
+          audio: true,
+          video: true
         });
+        _this4.stream = localStream;
+        localStream.init(function () {
+          localStream.play("me");
+
+          _this4.client.publish(localStream, function (err) {
+            return _this4.handleFail(err);
+          });
+        }, function (err) {
+          return _this4.handleFail(err);
+        });
+      }, function (err) {
+        return _this4.handleFail(err);
       });
+      this.addListeners();
     },
     handleFail: function handleFail(err) {
       console.log("Error : ", err);
-    },
-    addVideoStream: function addVideoStream(elementId) {
-      var streamDiv = document.createElement("div");
-      streamDiv.id = elementId;
-      streamDiv.style = 'width:200px;height:200px;background-color:red';
-      streamDiv.style.transform = "rotateY(180deg)";
-      var remoteContainer = document.getElementById('remoteContainer');
-      remoteContainer.appendChild(streamDiv);
-    },
-    removeVideoStream: function removeVideoStream(elementId) {
-      var remoteDiv = document.getElementById(elementId);
-      if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
     }
   }
 });
@@ -302,110 +276,16 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", {
-        staticStyle: { width: "400px", height: "400px" },
+        staticStyle: {
+          width: "400px",
+          height: "400px",
+          "background-color": "seagreen"
+        },
         attrs: { id: "remoteContainer" }
       }),
       _vm._v(" "),
-      _c("button", { on: { click: function($event) {} } })
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("div", [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role,
-              expression: "role"
-            }
-          ],
-          attrs: { id: "RoleAttendee", type: "radio", value: "0" },
-          domProps: { checked: _vm._q(_vm.role, "0") },
-          on: {
-            change: function($event) {
-              _vm.role = "0"
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "RoleAttendee" } }, [
-          _vm._v("RoleAttendee")
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role,
-              expression: "role"
-            }
-          ],
-          attrs: { id: "RolePublisher", type: "radio", value: "1" },
-          domProps: { checked: _vm._q(_vm.role, "1") },
-          on: {
-            change: function($event) {
-              _vm.role = "1"
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "RolePublisher" } }, [
-          _vm._v("RolePublisher")
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role,
-              expression: "role"
-            }
-          ],
-          attrs: { id: "RoleSubscriber", type: "radio", value: "2" },
-          domProps: { checked: _vm._q(_vm.role, "2") },
-          on: {
-            change: function($event) {
-              _vm.role = "2"
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "RoleSubscriber" } }, [
-          _vm._v("RoleSubscriber")
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role,
-              expression: "role"
-            }
-          ],
-          attrs: { id: "RoleAdmin", type: "radio", value: "101" },
-          domProps: { checked: _vm._q(_vm.role, "101") },
-          on: {
-            change: function($event) {
-              _vm.role = "101"
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "RoleAdmin" } }, [_vm._v("RoleAdmin")]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [_vm._v("Выбрано: " + _vm._s(_vm.role))])
+      _c("button", { on: { click: _vm.videoControl } }, [
+        _vm._v("video controls")
       ])
     ]),
     _vm._v(" "),
