@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Try1",
@@ -64,7 +65,8 @@ __webpack_require__.r(__webpack_exports__);
       agoraAppId: 'ff487d0a29264aa78133c3ea7eccd374',
       channelName: null,
       uid: null,
-      role: 101
+      role: 101,
+      localStream: null
     };
   },
   mounted: function mounted() {
@@ -80,20 +82,30 @@ __webpack_require__.r(__webpack_exports__);
     this.createClient();
   },
   methods: {
-    getLocalStream: function getLocalStream() {
-      navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
-      }).then(function (stream) {
-        window.localStream = stream;
-        window.localAudio.srcObject = stream;
-        window.localAudio.autoplay = true;
-      })["catch"](function (err) {
-        console.log("u got an error:" + err);
+    audioControl: function audioControl() {
+      if (this.localStream._isAudioMuted()) this.localStream.muteAudio();else this.localStream.unmuteAudio();
+    },
+    listeners: function listeners() {
+      var _this = this;
+
+      this.client.on('stream-subscribed', function (evt) {
+        var stream = evt.stream;
+        var streamId = String(stream.getId());
+        var streamDiv = document.createElement("div");
+        streamDiv.id = streamId;
+        streamDiv.style = "transform:rotateY(180deg);height:100%";
+        var remoteContainer = document.getElementById('remoteContainer');
+        remoteContainer.appendChild(streamDiv);
+        stream.play(streamId);
+      });
+      this.client.on('stream-added', function (evt) {
+        _this.client.subscribe(evt.stream, function (err) {
+          return _this.handleFail(err);
+        });
       });
     },
     createClient: function createClient() {
-      var _this = this;
+      var _this2 = this;
 
       this.uid = Math.round(Math.random(1000) * 10000000);
       this.client = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createClient({
@@ -103,65 +115,23 @@ __webpack_require__.r(__webpack_exports__);
       this.client.init(this.agoraAppId, function () {
         return console.log('client initialized');
       }, function (err) {
-        return _this.handleFail(err);
+        return _this2.handleFail(err);
       });
     },
     createChannel: function createChannel() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.joinChannel();
       this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
-        var localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
+        _this3.localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
           audio: true,
           video: true
         });
-        localStream.init(function () {
-          localStream.play("me");
 
-          _this2.client.publish(localStream, function (err) {
-            return _this2.handleFail(err);
-          });
-        }, function (err) {
-          return _this2.handleFail(err);
-        });
-      }, function (err) {
-        return _this2.handleFail(err);
-      });
-      this.client.on('stream-subscribed', function (evt) {
-        var stream = evt.stream;
-        var streamId = String(stream.getId());
+        _this3.localStream.init(function () {
+          _this3.localStream.play("me");
 
-        try {
-          this.addVideoStream(streamId);
-        } catch (e) {
-          console.log(e);
-          var streamDiv = document.createElement("div");
-          streamDiv.id = streamId;
-          streamDiv.style.transform = "rotateY(180deg)";
-          var remoteContainer = document.getElementById('remoteContainer');
-          remoteContainer.appendChild(streamDiv);
-        }
-
-        stream.play(streamId);
-      });
-      this.client.on('stream-added', function (evt) {
-        _this2.client.subscribe(evt.stream, function (err) {
-          return _this2.handleFail(err);
-        });
-      });
-    },
-    joinChannel: function joinChannel() {
-      var _this3 = this;
-
-      this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
-        var localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
-          audio: true,
-          video: true
-        });
-        localStream.init(function () {
-          localStream.play("me");
-
-          _this3.client.publish(localStream, function (err) {
+          _this3.client.publish(_this3.localStream, function (err) {
             return _this3.handleFail(err);
           });
         }, function (err) {
@@ -170,42 +140,72 @@ __webpack_require__.r(__webpack_exports__);
       }, function (err) {
         return _this3.handleFail(err);
       });
-      this.client.on('stream-subscribed', function (evt) {
-        var stream = evt.stream;
-        var streamId = String(stream.getId());
+      this.listeners(); // this.client.on('stream-subscribed', function (evt) {
+      //     let stream = evt.stream;
+      //     let streamId = String(stream.getId());
+      //     try {
+      //         this.addVideoStream(streamId);
+      //     } catch (e) {
+      //         console.log(e);
+      //         let streamDiv = document.createElement("div");
+      //         streamDiv.id = streamId;
+      //         streamDiv.style.transform = "rotateY(180deg)";
+      //         let remoteContainer = document.getElementById('remoteContainer');
+      //         remoteContainer.appendChild(streamDiv);
+      //     }
+      //
+      //
+      //     stream.play(streamId);
+      // });
+      //
+      // this.client.on('stream-added', (evt) => {
+      //     this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+      // });
+    },
+    joinChannel: function joinChannel() {
+      var _this4 = this;
 
-        try {
-          this.addVideoStream(streamId);
-        } catch (e) {
-          var streamDiv = document.createElement("div");
-          streamDiv.id = streamId;
-          streamDiv.style.transform = "rotateY(180deg)";
-          var remoteContainer = document.getElementById('remoteContainer');
-          remoteContainer.appendChild(streamDiv);
-        }
-
-        stream.play(streamId);
-      });
-      this.client.on('stream-added', function (evt) {
-        _this3.client.subscribe(evt.stream, function (err) {
-          return _this3.handleFail(err);
+      this.client.join(this.agoraAppId, this.channelName, null, function (uid) {
+        _this4.localStream = agora_rtc_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.createStream({
+          audio: true,
+          video: true
         });
+
+        _this4.localStream.init(function () {
+          _this4.localStream.play("me");
+
+          _this4.client.publish(_this4.localStream, function (err) {
+            return _this4.handleFail(err);
+          });
+        }, function (err) {
+          return _this4.handleFail(err);
+        });
+      }, function (err) {
+        return _this4.handleFail(err);
       });
+      this.listeners(); // this.client.on('stream-subscribed', function (evt) {
+      //     let stream = evt.stream;
+      //     let streamId = String(stream.getId());
+      //     try {
+      //         this.addVideoStream(streamId);
+      //     } catch (e) {
+      //         let streamDiv = document.createElement("div");
+      //         streamDiv.id = streamId;
+      //         streamDiv.style.transform = "rotateY(180deg)";
+      //         let remoteContainer = document.getElementById('remoteContainer');
+      //         remoteContainer.appendChild(streamDiv);
+      //     }
+      //
+      //
+      //     stream.play(streamId);
+      // });
+      //
+      // this.client.on('stream-added', (evt) => {
+      //     this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+      // });
     },
     handleFail: function handleFail(err) {
       console.log("Error : ", err);
-    },
-    addVideoStream: function addVideoStream(elementId) {
-      var streamDiv = document.createElement("div");
-      streamDiv.id = elementId;
-      streamDiv.style = 'width:200px;height:200px;background-color:red';
-      streamDiv.style.transform = "rotateY(180deg)";
-      var remoteContainer = document.getElementById('remoteContainer');
-      remoteContainer.appendChild(streamDiv);
-    },
-    removeVideoStream: function removeVideoStream(elementId) {
-      var remoteDiv = document.getElementById(elementId);
-      if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
     }
   }
 });
@@ -297,34 +297,15 @@ var render = function() {
         _vm._v(" "),
         _c("button", { attrs: { id: "leave", type: "button" } }, [
           _vm._v("Leave")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { id: "getStr", type: "button" },
-            on: { click: _vm.getLocalStream }
-          },
-          [_vm._v("get stream")]
-        )
+        ])
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br")
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
+    _c("div", [
+      _c("button", { on: { click: _vm.audioControl } }, [
+        _vm._v("Audio control")
+      ]),
+      _vm._v(" "),
       _c("h4", [_vm._v("My Feed :")]),
       _vm._v(" "),
       _c("div", {
@@ -336,6 +317,8 @@ var staticRenderFns = [
         attrs: { id: "me" }
       }),
       _vm._v(" "),
+      _c("h4", [_vm._v("Stream:")]),
+      _vm._v(" "),
       _c("div", {
         staticStyle: {
           width: "300px",
@@ -344,9 +327,16 @@ var staticRenderFns = [
         },
         attrs: { id: "remoteContainer" }
       })
-    ])
-  }
-]
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br")
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

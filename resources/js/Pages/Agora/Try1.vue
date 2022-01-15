@@ -9,32 +9,33 @@
                 <button id="host-join" type="button" @click="createChannel">Join as host</button>
                 <button id="audience-join" type="button" @click="joinChannel">Join as audience</button>
                 <button id="leave" type="button">Leave</button>
-                <button id="getStr" type="button" @click="getLocalStream">get stream</button>
             </div>
         </div>
         <div>
+            <button @click="audioControl">Audio control</button>
             <h4>My Feed :</h4>
             <div id="me" style="width: 300px;height: 300px;background-color: seagreen"></div>
+            <h4>Stream:</h4>
             <div id="remoteContainer" style="width: 300px;height: 300px;background-color: #0c5460"></div>
         </div>
-<!--        <div>-->
-<!--            <div>-->
-<!--                <input id="RoleAttendee" v-model="role" type="radio" value="0">-->
-<!--                <label for="RoleAttendee">RoleAttendee</label>-->
-<!--                <br>-->
-<!--                <input id="RolePublisher" v-model="role" type="radio" value="1">-->
-<!--                <label for="RolePublisher">RolePublisher</label>-->
-<!--                <br>-->
-<!--                <input id="RoleSubscriber" v-model="role" type="radio" value="2">-->
-<!--                <label for="RoleSubscriber">RoleSubscriber</label>-->
-<!--                <br>-->
-<!--                <input id="RoleAdmin" v-model="role" type="radio" value="101">-->
-<!--                <label for="RoleAdmin">RoleAdmin</label>-->
-<!--                <br>-->
-<!--                <span>Выбрано: {{ role }}</span>-->
+        <!--        <div>-->
+        <!--            <div>-->
+        <!--                <input id="RoleAttendee" v-model="role" type="radio" value="0">-->
+        <!--                <label for="RoleAttendee">RoleAttendee</label>-->
+        <!--                <br>-->
+        <!--                <input id="RolePublisher" v-model="role" type="radio" value="1">-->
+        <!--                <label for="RolePublisher">RolePublisher</label>-->
+        <!--                <br>-->
+        <!--                <input id="RoleSubscriber" v-model="role" type="radio" value="2">-->
+        <!--                <label for="RoleSubscriber">RoleSubscriber</label>-->
+        <!--                <br>-->
+        <!--                <input id="RoleAdmin" v-model="role" type="radio" value="101">-->
+        <!--                <label for="RoleAdmin">RoleAdmin</label>-->
+        <!--                <br>-->
+        <!--                <span>Выбрано: {{ role }}</span>-->
 
-<!--            </div>-->
-<!--        </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <br>
         <br>
         <br>
@@ -54,6 +55,7 @@ export default {
             channelName: null,
             uid: null,
             role: 101,
+            localStream:null
         };
     },
     mounted() {
@@ -70,15 +72,31 @@ export default {
         this.createClient();
     },
     methods: {
-        getLocalStream() {
-            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
-                window.localStream = stream;
-                window.localAudio.srcObject = stream;
-                window.localAudio.autoplay = true;
-            }).catch(err => {
-                console.log("u got an error:" + err);
+        audioControl(){
+            if (this.localStream._isAudioMuted())
+                this.localStream.muteAudio()
+            else
+                this.localStream.unmuteAudio()
+        },
+        listeners() {
+            this.client.on('stream-subscribed', function (evt) {
+                let stream = evt.stream;
+                let streamId = String(stream.getId());
+                let streamDiv = document.createElement("div");
+                streamDiv.id = streamId;
+                streamDiv.style = "transform:rotateY(180deg);height:100%";
+                let remoteContainer = document.getElementById('remoteContainer');
+                remoteContainer.appendChild(streamDiv);
+
+                stream.play(streamId);
+            });
+
+            this.client.on('stream-added', (evt) => {
+                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
             });
         },
+
+
         createClient() {
             this.uid = Math.round(Math.random(1000) * 10000000);
             this.client = AgoraRTC.createClient({
@@ -90,87 +108,75 @@ export default {
         createChannel() {
             this.joinChannel();
             this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
-                let localStream = AgoraRTC.createStream({
+                this.localStream = AgoraRTC.createStream({
                     audio: true,
                     video: true,
                 });
-                localStream.init(() => {
-                    localStream.play("me");
-                    this.client.publish(localStream, (err) => this.handleFail(err));
+                this.localStream.init(() => {
+                    this.localStream.play("me");
+                    this.client.publish(this.localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
             }, (err) => this.handleFail(err));
-            this.client.on('stream-subscribed', function (evt) {
-                let stream = evt.stream;
-                let streamId = String(stream.getId());
-                try {
-                    this.addVideoStream(streamId)
-                }
-                catch (e){
-                    console.log(e)
-                    let streamDiv = document.createElement("div");
-                    streamDiv.id = streamId;
-                    streamDiv.style.transform = "rotateY(180deg)";
-                    let remoteContainer = document.getElementById('remoteContainer');
-                    remoteContainer.appendChild(streamDiv);
-                }
-
-
-                stream.play(streamId);
-            });
-
-            this.client.on('stream-added', (evt) => {
-                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
-            });
+            this.listeners();
+            // this.client.on('stream-subscribed', function (evt) {
+            //     let stream = evt.stream;
+            //     let streamId = String(stream.getId());
+            //     try {
+            //         this.addVideoStream(streamId);
+            //     } catch (e) {
+            //         console.log(e);
+            //         let streamDiv = document.createElement("div");
+            //         streamDiv.id = streamId;
+            //         streamDiv.style.transform = "rotateY(180deg)";
+            //         let remoteContainer = document.getElementById('remoteContainer');
+            //         remoteContainer.appendChild(streamDiv);
+            //     }
+            //
+            //
+            //     stream.play(streamId);
+            // });
+            //
+            // this.client.on('stream-added', (evt) => {
+            //     this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+            // });
         },
         joinChannel() {
             this.client.join(this.agoraAppId, this.channelName, null, (uid) => {
-                let localStream = AgoraRTC.createStream({
+                this. localStream = AgoraRTC.createStream({
                     audio: true,
                     video: true,
                 });
-                localStream.init(() => {
-                    localStream.play("me");
-                    this.client.publish(localStream, (err) => this.handleFail(err));
+                this.localStream.init(() => {
+                    this.localStream.play("me");
+                    this.client.publish(this.localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
             }, (err) => this.handleFail(err));
-            this.client.on('stream-subscribed', function (evt) {
-                let stream = evt.stream;
-                let streamId = String(stream.getId());
-                try {
-                    this.addVideoStream(streamId)
-                }
-                catch (e){
-                    let streamDiv = document.createElement("div");
-                    streamDiv.id = streamId;
-                    streamDiv.style.transform = "rotateY(180deg)";
-                    let remoteContainer = document.getElementById('remoteContainer');
-                    remoteContainer.appendChild(streamDiv);
-                }
-
-
-                stream.play(streamId);
-            });
-
-            this.client.on('stream-added', (evt) => {
-                this.client.subscribe(evt.stream, (err) => this.handleFail(err));
-            });
+            this.listeners();
+            // this.client.on('stream-subscribed', function (evt) {
+            //     let stream = evt.stream;
+            //     let streamId = String(stream.getId());
+            //     try {
+            //         this.addVideoStream(streamId);
+            //     } catch (e) {
+            //         let streamDiv = document.createElement("div");
+            //         streamDiv.id = streamId;
+            //         streamDiv.style.transform = "rotateY(180deg)";
+            //         let remoteContainer = document.getElementById('remoteContainer');
+            //         remoteContainer.appendChild(streamDiv);
+            //     }
+            //
+            //
+            //     stream.play(streamId);
+            // });
+            //
+            // this.client.on('stream-added', (evt) => {
+            //     this.client.subscribe(evt.stream, (err) => this.handleFail(err));
+            // });
 
         },
         handleFail(err) {
             console.log("Error : ", err);
         },
-        addVideoStream(elementId) {
-            let streamDiv = document.createElement("div");
-            streamDiv.id = elementId;
-            streamDiv.style = 'width:200px;height:200px;background-color:red';
-            streamDiv.style.transform = "rotateY(180deg)";
-            let remoteContainer = document.getElementById('remoteContainer');
-            remoteContainer.appendChild(streamDiv);
-        },
-        removeVideoStream(elementId) {
-            let remoteDiv = document.getElementById(elementId);
-            if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
-        }
     }
 };
 </script>

@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="352f9825-a0cc-4e6e-baf6-5653a07f154e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Agora/Try1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Agora/Try1.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP.7.3">
     <include_path>
@@ -367,7 +368,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642230228924</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixes">
+      <created>1642234460824</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1642234460824</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fixes">
+      <created>1642234525518</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1642234525518</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,14 +412,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2015" y="273" key="CommitChangelistDialog2" timestamp="1642230228450">
+    <state x="2015" y="273" key="CommitChangelistDialog2" timestamp="1642234525205">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
-    <state x="2015" y="273" key="CommitChangelistDialog2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230228450" />
+    <state x="2015" y="273" key="CommitChangelistDialog2/0.0.3440.1392@0.0.3440.1392" timestamp="1642234525205" />
+    <state x="511" y="168" width="2710" height="1105" key="DiffContextDialog" timestamp="1642234115500">
+      <screen x="0" y="0" width="3440" height="1392" />
+    </state>
+    <state x="511" y="168" width="2710" height="1105" key="DiffContextDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642234115500" />
     <state x="1523" y="464" key="FileChooserDialogImpl" timestamp="1642147427233">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
     <state x="1523" y="464" key="FileChooserDialogImpl/0.0.3440.1392@0.0.3440.1392" timestamp="1642147427233" />
+    <state x="482" y="145" key="MergeDialog" timestamp="1642234499509">
+      <screen x="0" y="0" width="3440" height="1392" />
+    </state>
+    <state x="482" y="145" key="MergeDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642234499509" />
+    <state x="1511" y="483" key="MultipleFileMergeDialog" timestamp="1642234502524">
+      <screen x="0" y="0" width="3440" height="1392" />
+    </state>
+    <state x="1511" y="483" key="MultipleFileMergeDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642234502524" />
     <state x="1959" y="425" key="NewPhpClassDialog" timestamp="1642080478422">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
@@ -413,14 +440,14 @@
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
     <state x="1574" y="622" key="NewPhpFileDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642079052993" />
-    <state x="2181" y="404" key="RollbackChangesDialog" timestamp="1642088403253">
+    <state x="2181" y="404" key="RollbackChangesDialog" timestamp="1642234454999">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
-    <state x="2181" y="404" key="RollbackChangesDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642088403253" />
-    <state x="1946" y="433" key="Vcs.Push.Dialog.v2" timestamp="1642230230649">
+    <state x="2181" y="404" key="RollbackChangesDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642234454999" />
+    <state x="1946" y="433" key="Vcs.Push.Dialog.v2" timestamp="1642234526939">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
-    <state x="1946" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230230649" />
+    <state x="1946" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1392@0.0.3440.1392" timestamp="1642234526939" />
     <state x="1644" y="375" key="search.everywhere.popup" timestamp="1640768943741">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
