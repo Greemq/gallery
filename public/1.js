@@ -119,7 +119,9 @@ __webpack_require__.r(__webpack_exports__);
 
         localStream.init(function () {
           // Play the local stream
-          localStream.play("me"); // Publish the local stream
+          localStream.play("me");
+          var me = document.getElementById('me');
+          me.style = "width:200px;height:200px"; // Publish the local stream
 
           client.publish(localStream, function (err) {
             return _this2.handleFail(err);
@@ -140,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(e);
           var streamDiv = document.createElement("div");
           streamDiv.id = streamId;
-          streamDiv.style.transform = "rotateY(180deg)";
+          streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
           var remoteContainer = document.getElementById('remoteContainer');
           remoteContainer.appendChild(streamDiv);
         }
@@ -182,10 +184,10 @@ __webpack_require__.r(__webpack_exports__);
         try {
           this.addVideoStream(streamId);
         } catch (e) {
-          console.log(e);
+          console.log('my error ' + e);
           var streamDiv = document.createElement("div");
           streamDiv.id = streamId;
-          streamDiv.style.transform = "rotateY(180deg)";
+          streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
           var remoteContainer = document.getElementById('remoteContainer');
           remoteContainer.appendChild(streamDiv);
         }

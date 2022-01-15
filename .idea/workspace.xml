@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="352f9825-a0cc-4e6e-baf6-5653a07f154e" name="Default Changelist" comment="" />
+    <list default="true" id="352f9825-a0cc-4e6e-baf6-5653a07f154e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Agora/Try1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Agora/Try1.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -213,7 +215,7 @@
       <workItem from="1641980070704" duration="2945000" />
       <workItem from="1642047307953" duration="6125000" />
       <workItem from="1642078104604" duration="25383000" />
-      <workItem from="1642224468332" duration="3257000" />
+      <workItem from="1642224468332" duration="3573000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1619459479861</created>
@@ -362,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642230228924</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixes">
+      <created>1642230562533</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1642230562533</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,10 +401,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2015" y="273" key="CommitChangelistDialog2" timestamp="1642230228450">
+    <state x="2015" y="273" key="CommitChangelistDialog2" timestamp="1642230562017">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
-    <state x="2015" y="273" key="CommitChangelistDialog2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230228450" />
+    <state x="2015" y="273" key="CommitChangelistDialog2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230562017" />
     <state x="1523" y="464" key="FileChooserDialogImpl" timestamp="1642147427233">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
@@ -412,10 +421,10 @@
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
     <state x="2181" y="404" key="RollbackChangesDialog/0.0.3440.1392@0.0.3440.1392" timestamp="1642088403253" />
-    <state x="1946" y="433" key="Vcs.Push.Dialog.v2" timestamp="1642230230649">
+    <state x="1946" y="433" key="Vcs.Push.Dialog.v2" timestamp="1642230564087">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>
-    <state x="1946" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230230649" />
+    <state x="1946" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1392@0.0.3440.1392" timestamp="1642230564087" />
     <state x="1644" y="375" key="search.everywhere.popup" timestamp="1640768943741">
       <screen x="0" y="0" width="3440" height="1392" />
     </state>

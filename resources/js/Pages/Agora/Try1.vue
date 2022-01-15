@@ -99,6 +99,8 @@ export default {
                 localStream.init(() => {
                     // Play the local stream
                     localStream.play("me");
+                    let me = document.getElementById('me');
+                    me.style = "width:200px;height:200px";
                     // Publish the local stream
                     client.publish(localStream, (err) => this.handleFail(err));
                 }, (err) => this.handleFail(err));
@@ -107,13 +109,12 @@ export default {
                 let stream = evt.stream;
                 let streamId = String(stream.getId());
                 try {
-                    this.addVideoStream(streamId)
-                }
-                catch (e){
-                    console.log(e)
+                    this.addVideoStream(streamId);
+                } catch (e) {
+                    console.log(e);
                     let streamDiv = document.createElement("div");
                     streamDiv.id = streamId;
-                    streamDiv.style.transform = "rotateY(180deg)";
+                    streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
                     let remoteContainer = document.getElementById('remoteContainer');
                     remoteContainer.appendChild(streamDiv);
                 }
@@ -144,13 +145,12 @@ export default {
                 let stream = evt.stream;
                 let streamId = String(stream.getId());
                 try {
-                    this.addVideoStream(streamId)
-                }
-                catch (e){
-                    console.log(e)
+                    this.addVideoStream(streamId);
+                } catch (e) {
+                    console.log('my error ' +e);
                     let streamDiv = document.createElement("div");
                     streamDiv.id = streamId;
-                    streamDiv.style.transform = "rotateY(180deg)";
+                    streamDiv.style = "transform:rotateY(180deg);width:400px;height:400px";
                     let remoteContainer = document.getElementById('remoteContainer');
                     remoteContainer.appendChild(streamDiv);
                 }
