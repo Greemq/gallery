@@ -156,7 +156,19 @@ __webpack_require__.r(__webpack_exports__);
       this.client.on('stream-subscribed', function (evt) {
         var stream = evt.stream;
         var streamId = String(stream.getId());
-        this.addVideoStream(streamId);
+        console.log(streamId);
+
+        try {
+          this.addVideoStream(streamId);
+        } catch (e) {
+          console.log(e);
+          var streamDiv = document.createElement("div");
+          streamDiv.id = streamId;
+          streamDiv.style.transform = "rotateY(180deg)";
+          var remoteContainer = document.getElementById('remoteContainer');
+          remoteContainer.appendChild(streamDiv);
+        }
+
         stream.play(streamId);
       });
       this.client.on('stream-added', function (evt) {
@@ -170,7 +182,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Error : ", err);
     },
     addVideoStream: function addVideoStream(elementId) {
-      console.log('stream opened');
       var streamDiv = document.createElement("div");
       streamDiv.id = elementId;
       streamDiv.style = 'width:200px;height:200px;background-color:red';

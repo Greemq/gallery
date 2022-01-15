@@ -121,7 +121,20 @@ export default {
             this.client.on('stream-subscribed', function (evt) {
                 let stream = evt.stream;
                 let streamId = String(stream.getId());
-                this.addVideoStream(streamId);
+                console.log(streamId)
+                try {
+                    this.addVideoStream(streamId)
+                }
+                catch (e){
+                    console.log(e)
+                    let streamDiv = document.createElement("div");
+                    streamDiv.id = streamId;
+                    streamDiv.style.transform = "rotateY(180deg)";
+                    let remoteContainer = document.getElementById('remoteContainer');
+                    remoteContainer.appendChild(streamDiv);
+                }
+
+
                 stream.play(streamId);
             });
 
@@ -137,7 +150,6 @@ export default {
             console.log("Error : ", err);
         },
         addVideoStream(elementId) {
-            console.log('stream opened')
             let streamDiv = document.createElement("div");
             streamDiv.id = elementId;
             streamDiv.style = 'width:200px;height:200px;background-color:red';
