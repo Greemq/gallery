@@ -61,10 +61,9 @@ export default {
     watch: {
         'video': function () {
             if (this.video)
-                this.stream.disableAudio()
+                this.stream.disableAudio();
             else
-                this.stream.enableAudio()
-            this.video = !this.video;
+                this.stream.enableAudio();
         }
     },
     mounted() {
@@ -82,7 +81,7 @@ export default {
     },
     methods: {
         videoControl() {
-
+            this.video = !this.video;
         },
         createClient() {
             this.uid = Math.round(Math.random(1000) * 10000000);

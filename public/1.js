@@ -72,7 +72,6 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     'video': function video() {
       if (this.video) this.stream.disableAudio();else this.stream.enableAudio();
-      this.video = !this.video;
     }
   },
   mounted: function mounted() {
@@ -88,7 +87,9 @@ __webpack_require__.r(__webpack_exports__);
     this.createClient();
   },
   methods: {
-    videoControl: function videoControl() {},
+    videoControl: function videoControl() {
+      this.video = !this.video;
+    },
     createClient: function createClient() {
       var _this = this;
 
